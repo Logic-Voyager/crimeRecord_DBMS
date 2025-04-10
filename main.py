@@ -50,8 +50,6 @@ def add_suspect():
 
 if __name__ == '__main__':
     app.run(debug=True)
-git add schema.sql
-git commit -m "Added SQL schema file to define database structure"
-git push origin main
+
 
 
