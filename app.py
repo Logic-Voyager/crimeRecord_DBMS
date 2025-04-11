@@ -79,26 +79,45 @@ def crimes():
 @login_required
 def add_crime():
     if request.method == 'POST':
-        description = request.form['description']
-        date = request.form['date']
-        location = request.form['location']
+        description = request.form.get('description')
+        date = request.form.get('date')
+        location = request.form.get('location')
         crime_type = request.form.get('crime_type')
         severity = request.form.get('severity')
-        evidence_file = request.files['evidence']
+        evidence_file = request.files.get('evidence')
 
         filename = None
         if evidence_file and evidence_file.filename != '':
             filename = secure_filename(evidence_file.filename)
             evidence_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-        new_crime = Crime(description=description, date=date, location=location,
-                          crime_type=crime_type, severity=severity, evidence=filename)
+        new_crime = Crime(
+            description=description,
+            date=date,
+            location=location,
+            crime_type=crime_type,
+            severity=severity,
+            evidence=filename
+        )
+
         db.session.add(new_crime)
         db.session.commit()
+
         flash("Crime Report Added Successfully", "success")
-        return redirect(url_for('crime_list'))
+
+        return redirect(url_for('crimes'))
 
     return render_template('add_crime.html')
+
+@app.route('/delete_crime/<int:crime_id>', methods=['POST'])
+@login_required
+def delete_crime(crime_id):
+    crime = Crime.query.get_or_404(crime_id)
+    db.session.delete(crime)
+    db.session.commit()
+    flash("Crime record deleted successfully.", "success")
+    return redirect(url_for('crimes'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

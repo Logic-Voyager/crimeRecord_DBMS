@@ -217,3 +217,17 @@ body.main-body {
 }
 
 
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
