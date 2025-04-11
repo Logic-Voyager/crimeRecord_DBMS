@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crime List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="main-body">
+
+    <div class="container">
+        <header class="header">
+            <h2>🕵️‍♀️ Crime Records</h2>
+            <p class="tagline">View all reported crimes</p>
+        </header>
+
+        <section class="crime-list">
+            {% if crimes %}
+                <ul class="crime-items">
+                    {% for crime in crimes %}
+                        <li class="crime-card">
+                            <strong>{{ crime.date }}</strong><br>
+                            {{ crime.description }}<br>
+                            <em>Location: {{ crime.location }}</em>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No crimes recorded yet.</p>
+            {% endif %}
+        </section>
+
+        <nav class="navigation">
+            <a href="{{ url_for('add_crime') }}" class="nav-button">+ Add New Crime</a>
+            <a href="{{ url_for('logout') }}" class="nav-button logout">Logout</a>
+        </nav>
+    </div>
+
+</body>
+</html>
