@@ -1,5 +1,4 @@
-MYSQL_HOST = 'localhost'
-MYSQL_USER = 'your_mysql_username'
-MYSQL_PASSWORD = 'your_mysql_password'
-MYSQL_DB = 'your_database_name'
-
+class Config:
+    SECRET_KEY = 'your_secret_key'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:@localhost/crime_db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
