@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search and Filter Crimes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search and Filter Crimes</h1>
+        <form method="get" action="{{ url_for('search_filter_crimes') }}">
+            <input type="text" name="search" placeholder="Search by description or location" value="{{ request.args.get('search') }}">
+            <input type="date" name="start_date" value="{{ request.args.get('start_date') }}">
+            <input type="date" name="end_date" value="{{ request.args.get('end_date') }}">
+            <select name="crime_type">
+                <option value="">Select Crime Type</option>
+                <option value="Theft" {% if request.args.get('crime_type') == 'Theft' %}selected{% endif %}>Theft</option>
+                <option value="Assault" {% if request.args.get('crime_type') == 'Assault' %}selected{% endif %}>Assault</option>
+                <option value="Homicide" {% if request.args.get('crime_type') == 'Homicide' %}selected{% endif %}>Homicide</option>
+                <!-- Add other crime types as needed -->
+            </select>
+            <input type="text" name="location" placeholder="Location" value="{{ request.args.get('location') }}">
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="crime-list">
+            {% if crimes.items %}
+                <ul>
+                    {% for crime in crimes.items %}
+                        <li class="crime-card">
+                            <strong>{{ crime.date }}</strong><br>
+                            {{ crime.description }}<br>
+                            <em>Location: {{ crime.location }}</em><br>
+                            <em>Crime Type: {{ crime.crime_type }}</em><br>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="pagination">
+                    {% if crimes.has_prev %}
+                        <a href="{{ url_for('search_filter_crimes', page=crimes.prev_num) }}">Previous</a>
+                    {% endif %}
+                    <span>Page {{ crimes.page }} of {{ crimes.pages }}</span>
+                    {% if crimes.has_next %}
+                        <a href="{{ url_for('search_filter_crimes', page=crimes.next_num) }}">Next</a>
+                    {% endif %}
+                </div>
+            {% else %}
+                <p>No crimes found based on your search criteria.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
