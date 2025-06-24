@@ -41,7 +41,7 @@ A professional and lightweight web application to securely log, track, and manag
 - **HTML + Jinja2 Templates**
 - **CSS (Responsive & Styled)**
 
-**Future Improvements**
+## Future Improvements
 - User roles (Admin, Officer, Viewer)
 
 - Crime update/edit feature
@@ -49,3 +49,6 @@ A professional and lightweight web application to securely log, track, and manag
 - Downloadable reports (PDF/CSV)
 
 - Dashboard with charts/analytics
+
+## 🤝 Contributing
+Pull requests are welcome! For suggestions, contact me or open an issue.
