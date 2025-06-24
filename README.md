@@ -1,16 +1,51 @@
-# crimeRecord_DBMS
+# 🕵️ Crime Records Management System
 
-" A software to store and retrieve crime report and suspect. "
+A professional and lightweight web application to securely log, track, and manage crime reports. Built using **Flask**, **SQLAlchemy**, and **MySQL**, this system allows authenticated users to register crimes with optional evidence files, view them in a styled dashboard, filter/search by various criteria, and delete records with ease.
 
-### Landing Page Structure:
-#### 1. SignIn Section:
-- Added a sign-in or signup page.
-- Call-to-Action (CTA) button: "Submit button."  
+---
 
-#### 2. Add Crime Section:
-- Brief information about the crime and suspect
-- Photos of the crime scene
-  
-#### 3. Crime Report page:
-- A record manual of all crimes
+## 🚀 Features
 
+✅ **User Authentication**  
+- Sign Up and Log In using hashed passwords  
+- Session-based access control (`Flask-Login`)  
+
+📋 **Add Crime Report**  
+- Description, location, type, severity, date  
+- Upload evidence (images/documents)
+
+🗂️ **View & Manage Reports**  
+- View all crimes on a dashboard  
+- Display uploaded image evidence  
+- Delete crime records with confirmation
+
+🔎 **Search & Filter**  
+- Filter by description, date range, type, and location  
+- Pagination support for large datasets
+
+🏠 **Homepage**  
+- Custom home page styled for law enforcement usage
+
+📁 **File Upload Handling**  
+- Evidence files stored under `static/uploads` securely
+
+---
+
+## 💻 Tech Stack
+
+- **Python 3**
+- **Flask**
+- **Flask-SQLAlchemy**
+- **Flask-Login**
+- **MySQL / MariaDB**
+- **HTML + Jinja2 Templates**
+- **CSS (Responsive & Styled)**
+
+**Future Improvements**
+- User roles (Admin, Officer, Viewer)
+
+- Crime update/edit feature
+
+- Downloadable reports (PDF/CSV)
+
+- Dashboard with charts/analytics
